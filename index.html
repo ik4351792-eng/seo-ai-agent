@@ -3,101 +3,388 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>SEO AI Agent — Control Room</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+  rel="stylesheet"
+>
+
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+  <!-- =========================================================
+       TOP BAR
+  ========================================================== -->
 
   <header class="topbar">
     <div class="topbar-inner">
+
       <div class="brand">
+
         <span class="brand-mark" aria-hidden="true"></span>
+
         <div class="brand-text">
           <h1>SEO AI Agent</h1>
           <p>A team of AI specialists, run from one browser tab</p>
         </div>
+
       </div>
+
       <span class="phase-tag">Phase 1</span>
+
     </div>
   </header>
 
+
+  <!-- =========================================================
+       MAIN
+  ========================================================== -->
+
   <main class="layout">
 
-    <section class="panel task-panel" aria-labelledby="task-heading">
-      <h2 id="task-heading">Give the Head Agent a task</h2>
-      <p class="panel-hint">Describe what you want done. The Head Agent will read it, plan the work, and route it to the right specialists.</p>
+    <!-- =======================================================
+         TASK PANEL
+    ======================================================== -->
+
+    <section
+      class="panel task-panel"
+      aria-labelledby="task-heading"
+    >
+
+      <h2 id="task-heading">
+        Give the Head Agent a task
+      </h2>
+
+      <p class="panel-hint">
+        Enter the website you want to analyze and describe what you
+        want done. The Head Agent will plan the work and use real
+        website crawl data for the SEO analysis.
+      </p>
+
+
+      <!-- =====================================================
+           TASK FORM
+      ====================================================== -->
+
       <form id="task-form">
-        <label for="task-input" class="sr-only">SEO task</label>
+
+        <!-- Website URL -->
+
+        <label
+          for="website-input"
+          class="sr-only"
+        >
+          Website URL
+        </label>
+
+        <input
+          id="website-input"
+          name="website"
+          type="url"
+          placeholder="Website URL, e.g. https://example.com"
+          autocomplete="url"
+          required
+        >
+
+
+        <!-- SEO Task -->
+
+        <label
+          for="task-input"
+          class="sr-only"
+        >
+          SEO task
+        </label>
+
         <textarea
           id="task-input"
           name="task"
-          rows="3"
-          placeholder="e.g. Analyze my website and create a complete SEO content strategy for a small bakery in Austin, TX."
+          rows="4"
+          placeholder="e.g. Perform a complete technical SEO audit. Find broken links, missing titles, missing H1s, image alt issues, noindex pages, redirects and other SEO problems."
           required
         ></textarea>
+
+
+        <!-- Form actions -->
+
         <div class="task-actions">
-          <button type="submit" id="start-btn" class="btn-primary">
-            <span class="btn-label">Start task</span>
-            <span class="btn-spinner" aria-hidden="true"></span>
+
+          <button
+            type="submit"
+            id="start-btn"
+            class="btn-primary"
+          >
+
+            <span class="btn-label">
+              Start task
+            </span>
+
+            <span
+              class="btn-spinner"
+              aria-hidden="true"
+            ></span>
+
           </button>
-          <span id="form-error" class="form-error" role="alert"></span>
+
+
+          <span
+            id="form-error"
+            class="form-error"
+            role="alert"
+          ></span>
+
         </div>
+
       </form>
+
     </section>
+
+
+    <!-- =======================================================
+         LOWER GRID
+    ======================================================== -->
 
     <div class="lower-grid">
 
-      <section class="panel roster-panel" aria-labelledby="roster-heading">
-        <h2 id="roster-heading">Agent roster</h2>
-        <ul class="roster-list" id="roster-list">
-          <!-- rows injected by app.js from AGENTS config -->
+
+      <!-- =====================================================
+           AGENT ROSTER
+      ====================================================== -->
+
+      <section
+        class="panel roster-panel"
+        aria-labelledby="roster-heading"
+      >
+
+        <h2 id="roster-heading">
+          Agent roster
+        </h2>
+
+        <ul
+          class="roster-list"
+          id="roster-list"
+        >
+          <!--
+            Agent rows are injected by app.js
+          -->
         </ul>
+
       </section>
 
-      <section class="panel workflow-panel" aria-labelledby="workflow-heading">
-        <h2 id="workflow-heading">Workflow</h2>
-        <ol class="workflow-steps" id="workflow-steps">
-          <li class="wf-step" data-step="user">
-            <span class="wf-dot" aria-hidden="true"></span>
-            <div class="wf-copy"><strong>You</strong><span>Submit a task</span></div>
+
+      <!-- =====================================================
+           WORKFLOW
+      ====================================================== -->
+
+      <section
+        class="panel workflow-panel"
+        aria-labelledby="workflow-heading"
+      >
+
+        <h2 id="workflow-heading">
+          Workflow
+        </h2>
+
+        <ol
+          class="workflow-steps"
+          id="workflow-steps"
+        >
+
+
+          <!-- User -->
+
+          <li
+            class="wf-step"
+            data-step="user"
+          >
+
+            <span
+              class="wf-dot"
+              aria-hidden="true"
+            ></span>
+
+            <div class="wf-copy">
+
+              <strong>
+                You
+              </strong>
+
+              <span>
+                Submit website + task
+              </span>
+
+            </div>
+
           </li>
-          <li class="wf-step" data-step="head">
-            <span class="wf-dot" aria-hidden="true"></span>
-            <div class="wf-copy"><strong>Head Agent</strong><span>Reads the task</span></div>
+
+
+          <!-- Head Agent -->
+
+          <li
+            class="wf-step"
+            data-step="head"
+          >
+
+            <span
+              class="wf-dot"
+              aria-hidden="true"
+            ></span>
+
+            <div class="wf-copy">
+
+              <strong>
+                Head Agent
+              </strong>
+
+              <span>
+                Reads the task
+              </span>
+
+            </div>
+
           </li>
-          <li class="wf-step" data-step="plan">
-            <span class="wf-dot" aria-hidden="true"></span>
-            <div class="wf-copy"><strong>Planning</strong><span>Breaks it into subtasks</span></div>
+
+
+          <!-- Planning -->
+
+          <li
+            class="wf-step"
+            data-step="plan"
+          >
+
+            <span
+              class="wf-dot"
+              aria-hidden="true"
+            ></span>
+
+            <div class="wf-copy">
+
+              <strong>
+                Planning
+              </strong>
+
+              <span>
+                Breaks it into subtasks
+              </span>
+
+            </div>
+
           </li>
-          <li class="wf-step" data-step="specialists">
-            <span class="wf-dot" aria-hidden="true"></span>
-            <div class="wf-copy"><strong>Specialists</strong><span>Placeholders in Phase 1</span></div>
+
+
+          <!-- Specialists -->
+
+          <li
+            class="wf-step"
+            data-step="specialists"
+          >
+
+            <span
+              class="wf-dot"
+              aria-hidden="true"
+            ></span>
+
+            <div class="wf-copy">
+
+              <strong>
+                Specialists
+              </strong>
+
+              <span>
+                Analyze live website evidence
+              </span>
+
+            </div>
+
           </li>
-          <li class="wf-step" data-step="result">
-            <span class="wf-dot" aria-hidden="true"></span>
-            <div class="wf-copy"><strong>Final result</strong><span>Head Agent reports back</span></div>
+
+
+          <!-- Final Result -->
+
+          <li
+            class="wf-step"
+            data-step="result"
+          >
+
+            <span
+              class="wf-dot"
+              aria-hidden="true"
+            ></span>
+
+            <div class="wf-copy">
+
+              <strong>
+                Final result
+              </strong>
+
+              <span>
+                Evidence-based SEO report
+              </span>
+
+            </div>
+
           </li>
+
         </ol>
+
       </section>
 
     </div>
 
-    <section class="panel result-panel" aria-labelledby="result-heading">
-      <h2 id="result-heading">Final result</h2>
-      <div id="result-body" class="result-body">
-        <p class="result-empty">Nothing yet — start a task above and the Head Agent's plan and summary will appear here.</p>
+
+    <!-- =======================================================
+         RESULT PANEL
+    ======================================================== -->
+
+    <section
+      class="panel result-panel"
+      aria-labelledby="result-heading"
+    >
+
+      <h2 id="result-heading">
+        Final result
+      </h2>
+
+      <div
+        id="result-body"
+        class="result-body"
+      >
+
+        <p class="result-empty">
+          Nothing yet — enter a website and start a task above.
+          The Head Agent's plan, crawl findings, specialist analysis
+          and final SEO report will appear here.
+        </p>
+
       </div>
+
     </section>
 
   </main>
 
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
+
   <footer class="foot-note">
-    Running on Cloudflare Pages Functions · Cloudflare Workers AI · no keys in this page's code
+    Running on Cloudflare Pages Functions · Cloudflare Workers AI ·
+    real website crawl evidence · no keys in this page's code
   </footer>
 
+
+  <!-- =========================================================
+       APP JS
+  ========================================================== -->
+
   <script src="app.js"></script>
+
 </body>
 </html>
