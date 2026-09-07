@@ -27,8 +27,7 @@ async function callWorkersAI(
 ) {
   if (!env.AI) {
     throw new Error(
-      "Workers AI binding not found. In the Cloudflare Pages dashboard, go to " +
-      "Settings → Functions → AI bindings, and add a binding named 'AI'."
+      "Workers AI binding not found."
     );
   }
 
@@ -47,19 +46,22 @@ async function callWorkersAI(
         content: userPrompt,
       },
     ],
-
     chat_template_kwargs: {
       enable_thinking: false,
     },
   });
 
-  const text = result?.response;
+  // GLM-4.7-Flash chat response
+  const text =
+    result?.choices?.[0]?.message?.content ??
+    result?.response ??
+    "";
 
-  if (!text) {
+  if (typeof text !== "string" || !text.trim()) {
     throw new Error(
       "The model returned an empty response."
     );
   }
 
-  return text;
+  return text.trim();
 }
