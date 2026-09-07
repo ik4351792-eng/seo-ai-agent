@@ -1,0 +1,6 @@
+functions/
+worker.js
+wrangler.jsonc
+.git/
+.github/
+README.md
